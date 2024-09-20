@@ -2,3 +2,20 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans:ital,wght@0,100..900;1,100..900&display=swap');
+$main-color: #1877f2;
+//#1877f2
+//#2c71fb;
+
+$second-color:#f2f2f1 ;
+
+//#f8f9fa
+* {
+    font-family: "Noto Sans", sans-serif;
+}
+.text-main {
+    color: $main-color;
+}
+.bg-main{
+    background-color: $second-color;
+}

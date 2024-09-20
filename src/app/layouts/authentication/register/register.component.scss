@@ -1,0 +1,28 @@
+
+::-webkit-datetime-edit-fields-wrapper {
+    display: none;
+ }
+ ::-webkit-calendar-picker-indicator { 
+    position: absolute;
+    left: 20px;
+    opacity: 0;
+    top: 8px;
+ }
+ 
+ input[type='date']::before{
+    font-family: 'Font Awesome 5 Free';
+    content:'\f133';
+    font-weight: 900;
+    font-size: 20px;
+    position: absolute;
+    left: 20px;
+    top: 8px;
+    color: #777;
+ }
+ input[type='date']::after {
+    content:'Select date';
+    position: absolute;
+    left: 45px;
+    top: 8px;
+    color: #777
+ }

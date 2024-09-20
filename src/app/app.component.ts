@@ -2,11 +2,12 @@ import { Component, OnInit } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
 import { FlowbiteService } from './core/flowbite/flowbite.service';
 import { initFlowbite } from 'flowbite';
+import { RegisterComponent } from "./layouts/authentication/register/register.component";
 
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [RouterOutlet],
+  imports: [RouterOutlet, RegisterComponent],
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss'
 })
@@ -17,7 +18,6 @@ export class AppComponent implements OnInit{
     this.flowbiteService.loadFlowbite(flowbite => {
  
     });
-
   }
   
 }
