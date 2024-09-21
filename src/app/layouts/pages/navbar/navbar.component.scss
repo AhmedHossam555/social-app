@@ -1,0 +1,10 @@
+
+.dashboard {
+    transition: 0.3s linear;
+    right: -400px
+}
+.open .dashboard {
+    right: 0;
+}
+
+// bg-white absolute top-0 right-0 min-h-screen p-4"

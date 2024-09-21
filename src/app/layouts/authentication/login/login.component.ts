@@ -28,7 +28,9 @@ export class LoginComponent {
       next: (res)=>{
         console.log(res)
         if(res.message == "success"){
-          window.localStorage.setItem('userToken', res.token)
+          window.localStorage.setItem('userToken', res.token);
+          this._auth.userInformation();
+          this._router.navigate(['/posts']);
         }
       },
       error:(err)=>{
