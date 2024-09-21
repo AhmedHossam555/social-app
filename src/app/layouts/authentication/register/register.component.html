@@ -6,27 +6,27 @@
         <h1 class="text-main text-3xl font-medium my-5">
             Register now
         </h1>
-        <form autocomplete="off">
+        <form autocomplete="off" [formGroup]="signUpForm" (ngSubmit)="onSubmit()">
             <div class="mb-6">
-                <input type="text" id="name" class="block w-full p-2 text-gray-900 border border-gray-300 rounded-lg bg-main text-sm focus:ring-blue-500 focus:border-blue-500" placeholder="Type your name...">
+                <input type="text" id="name" formControlName="name" class="block w-full p-2 text-gray-900 border border-gray-300 rounded-lg bg-main text-sm focus:ring-blue-500 focus:border-blue-500" placeholder="Type your name...">
             </div>
             <div class="mb-6">
-                <input type="email" id="email" class="block w-full p-2 text-gray-900 border border-gray-300 rounded-lg bg-main text-sm focus:ring-blue-500 focus:border-blue-500" placeholder="Type your email...">
+                <input type="email" id="email" formControlName="email" class="block w-full p-2 text-gray-900 border border-gray-300 rounded-lg bg-main text-sm focus:ring-blue-500 focus:border-blue-500" placeholder="Type your email...">
             </div>
             <div class="mb-6">
-                <input type="password" id="password" class="block w-full p-2 text-gray-900 border border-gray-300 rounded-lg bg-main text-sm focus:ring-blue-500 focus:border-blue-500" placeholder="Type your password">
+                <input type="password" id="password" formControlName="password" class="block w-full p-2 text-gray-900 border border-gray-300 rounded-lg bg-main text-sm focus:ring-blue-500 focus:border-blue-500" placeholder="Type your password">
             </div>
             <div class="mb-6">
-                <input type="password" id="repassword" class="block w-full p-2 text-gray-900 border border-gray-300 rounded-lg bg-main text-sm focus:ring-blue-500 focus:border-blue-500" placeholder="confirm password">
+                <input type="password" id="repassword" formControlName="rePassword" class="block w-full p-2 text-gray-900 border border-gray-300 rounded-lg bg-main text-sm focus:ring-blue-500 focus:border-blue-500" placeholder="confirm password">
             </div>
             <div class="mb-6">
-                <input type="date" id="date" style="padding: 18px" class="block w-full relative p-2 text-gray-900 border border-gray-300 rounded-lg bg-gray-50 text-sm focus:ring-blue-500 focus:border-blue-500" placeholder="select date">
+                <input type="date"  id="date" formControlName="dateOfBirth" style="padding: 18px" class="block w-full relative p-2 text-gray-900 border border-gray-300 rounded-lg bg-gray-50 text-sm focus:ring-blue-500 focus:border-blue-500" placeholder="select date">
             </div>
             <div class="mb-6 flex items-center">
-                    <input type="radio" name="gender" id="male">
+                    <input type="radio" value="male"  id="male" formControlName="gender">
                     <label for="male" class="font-semibold px-1.5 mr-2">Male</label>
-                <input type="radio" name="gender" id="female">
-                <label for="female" class="font-semibold px-1.5">Female</label>
+                    <input type="radio" id="female" formControlName="gender">
+                    <label for="female" value="female" class="font-semibold px-1.5">Female</label>
             </div>
             <div>
                 <button type="submit" class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800">Sign Up</button>
