@@ -1,0 +1,24 @@
+<app-navbar></app-navbar>
+<div class="allposts bg-main">
+    @for(post of allPosts();track $index){
+        <div class="w-1/2 md:w-1/3 mx-auto bg-white rounded-lg p-5  mb-5">
+            <div class="flex items-center gap-2">
+                <img class="w-11 rounded-full" [src]="post.user.photo" [alt]="post.user.name">
+                <div>
+                    <h3 class="font-medium">
+                        {{post.user.name}}
+                    </h3>
+                    <span class="text-gray-500 my-1">
+                        {{post.createdAt | date:'short'}} 
+                    </span>
+                </div>
+            </div>
+            <p class="my-4">
+                {{post.body}}
+            </p>
+            <img class="w-full rounded-xl" [src]="post.image" alt="post-img">
+        </div>
+    }
+    
+
+</div>
