@@ -17,9 +17,15 @@
                 {{post.body}}
             </p>
             <img class="w-full rounded-xl" [src]="post.image" alt="post-img">
-            <p class="text-blue-400 mb-5 mt-2">show comment</p>
-            <app-allcommentpost></app-allcommentpost>
-         
+            @if(!ishow()){
+                <p class="text-blue-400 mb-5 mt-2 cursor-pointer" (click)="showComment()">show comments</p>
+            }
+            @if(ishow()){
+                <p class="text-blue-400 mb-5 mt-2 cursor-pointer" (click)="hiddenComment()">show comments</p>
+            }
+            @if(ishow()){
+                <app-allcommentpost [Id]="post._id" ></app-allcommentpost>
+            }
         </div>
     }
     

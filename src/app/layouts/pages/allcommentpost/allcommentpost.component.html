@@ -1,14 +1,17 @@
-<div class="p-5 bg-slate-100 rounded-xl ">
-    <div class="flex items-center gap-3 my-2">
-        <img class="w-11 rounded-full" src="dcd" alt="post.user.name">
-            <h5 class="font-medium">
-                 dsvfsv
-            </h5>
-            <span class="text-gray-600 my-1 font-light">
-                vffdsfdv
-            </span>
+
+@for(comment of comments();track $index){
+    <div class="p-5 bg-slate-100 rounded-xl mb-1">
+        <div class="flex items-center gap-3 my-2">
+            <img class="w-11 rounded-full" [src]="comment.commentCreator.photo" alt="image-person ">
+                <h5 class="font-medium">
+                     {{comment.commentCreator.name}}
+                </h5>
+                <span class="text-gray-600 my-1 font-light">
+                    {{comment.createdAt | date:'short'}}
+                </span>
+        </div>
+        <p class="font-light text-gray-600 ">
+            {{comment.content}}
+       </p>
     </div>
-    <p class="font-light text-gray-600 ">
-        Lorem, ipsum dolor sit amet consectetur adipisicing elit. Recusandae laborum soluta delectus saepe commodi eius nesciunt, in aut eos officiis? Placeat similique cum eligendi, quasi itaque reprehenderit. Alias, sequi laudantium.
-    </p>
-</div>
+}
