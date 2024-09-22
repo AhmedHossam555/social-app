@@ -4,11 +4,12 @@ import { NavbarComponent } from "../navbar/navbar.component";
 import { PostsService } from '../../../core/services/posts/posts.service';
 import { Posts } from '../../../core/interfaces/posts';
 import { DatePipe } from '@angular/common';
+import { AllcommentpostComponent } from "../allcommentpost/allcommentpost.component";
 
 @Component({
   selector: 'app-allposts',
   standalone: true,
-  imports: [NavbarComponent, DatePipe],
+  imports: [NavbarComponent, DatePipe, AllcommentpostComponent],
   templateUrl: './allposts.component.html',
   styleUrl: './allposts.component.scss'
 })
