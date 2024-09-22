@@ -8,3 +8,23 @@
 }
 
 // bg-white absolute top-0 right-0 min-h-screen p-4"
+
+
+@media screen and (max-width: 375px){
+    .nav {
+        justify-content: flex-start !important;
+        i {
+            margin-left: 50px !important;
+        }
+    }
+    .imagenav {
+        display: none !important;
+    }
+}
+@media screen and (min-width: 376px){
+    .nav {
+        justify-content: space-between !important;
+      
+    }
+
+}

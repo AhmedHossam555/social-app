@@ -1,6 +1,6 @@
 import { Component, signal, WritableSignal } from '@angular/core';
 import { RouterLink } from '@angular/router';
-import { AuthService } from '../../../core/services/auth.service';
+import { AuthService } from '../../../core/services/users/auth.service';
 import { Router } from '@angular/router';
 import { CommonModule } from '@angular/common';
 
