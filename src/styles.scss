@@ -14,7 +14,7 @@ $second-color:#f2f2f1 ;
     font-family: "Noto Sans", sans-serif;
 }
 body{
-    overflow: hidden;
+    overflow-x: hidden;
 }
 .text-main {
     color: $main-color;
@@ -22,3 +22,4 @@ body{
 .bg-main{
     background-color: $second-color;
 }
+

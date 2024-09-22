@@ -1,9 +1,9 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable, signal, WritableSignal } from '@angular/core';
 import { Observable } from 'rxjs';
-import { Signup } from '../interfaces/signup';
-import { Enviroment } from '../../enviroments/enviroment';
-import { Signin } from '../interfaces/signin';
+import { Signup } from '../../interfaces/signup';
+import { Enviroment } from '../../../enviroments/enviroment';
+import { Signin } from '../../interfaces/signin';
 import { jwtDecode } from 'jwt-decode';
 
 @Injectable({

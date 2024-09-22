@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
-import { FlowbiteService } from './core/flowbite/flowbite.service';
+import { FlowbiteService } from './core/services/flowbite/flowbite.service';
 import { initFlowbite } from 'flowbite';
 import { RegisterComponent } from "./layouts/authentication/register/register.component";
 

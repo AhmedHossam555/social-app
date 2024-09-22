@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { FlowbiteService } from '../../../core/flowbite/flowbite.service';
+import { FlowbiteService } from '../../../core/services/flowbite/flowbite.service';
 import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
-import { AuthService } from '../../../core/services/auth.service';
+import { AuthService } from '../../../core/services/users/auth.service';
 import { Router } from '@angular/router';
 
 @Component({
