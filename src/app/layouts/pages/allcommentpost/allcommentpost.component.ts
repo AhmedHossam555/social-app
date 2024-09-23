@@ -1,4 +1,4 @@
-import { Component, input, Input, InputSignal, OnChanges, OnInit, signal, WritableSignal } from '@angular/core';
+import { Component, computed, effect, input, Input, InputSignal, OnChanges, OnInit, signal, WritableSignal } from '@angular/core';
 import { CommentsService } from '../../../core/services/comments/comments.service';
 import { Comment } from '../../../core/interfaces/posts';
 import { DatePipe } from '@angular/common';
@@ -13,9 +13,10 @@ import { DatePipe } from '@angular/common';
 export class AllcommentpostComponent implements OnChanges {
   Id:InputSignal<string> = input('');
   ishow: WritableSignal<boolean> = signal(false);
-  comments:WritableSignal<Comment[]> = signal([]);
-  constructor(private _comments: CommentsService){
+   comments:WritableSignal<Comment[]> = signal([]);
 
+  constructor(private _comments: CommentsService){
+ 
   }
  
   ngOnChanges(){
@@ -26,7 +27,14 @@ export class AllcommentpostComponent implements OnChanges {
     })
   }
   showComment(){
-    this.ishow.set(true);
+    this._comments.getPostsComment(this.Id()).subscribe({
+      next:(res)=>{
+        this.comments.set(res.comments)
+      }
+    })
+    setTimeout(()=>{
+      this.ishow.set(true);
+    },1000)
   }
   hiddenComment(){
     this.ishow.set(false);

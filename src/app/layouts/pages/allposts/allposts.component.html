@@ -17,17 +17,15 @@
                 {{post.body}}
             </p>
             <img class="w-full rounded-xl" [src]="post.image" alt="post-img">
-            <app-allcommentpost [Id]="post._id" ></app-allcommentpost>
-            <app-create-comment></app-create-comment>
+            <app-allcommentpost [Id]="post._id"  ></app-allcommentpost>
+           
+            <app-create-comment [Id]="post._id"></app-create-comment>
          
         </div>
     }
+   
     
 
 </div>
 
-   <!--  @defer(on interaction(ele)){
-              
-                        <app-allcommentpost [Id]="post._id" ></app-allcommentpost>
-            }
- -->
+ 
