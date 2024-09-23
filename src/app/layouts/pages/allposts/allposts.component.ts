@@ -15,7 +15,6 @@ import { AllcommentpostComponent } from "../allcommentpost/allcommentpost.compon
 })
 export class AllpostsComponent implements OnInit {
   allPosts: WritableSignal<Posts[]> = signal([]);
-  ishow: WritableSignal<boolean> = signal(false);
   constructor(private _router:Router, private _posts: PostsService){
 
   }
@@ -31,10 +30,5 @@ export class AllpostsComponent implements OnInit {
       }
     })
   }
-  showComment(){
-    this.ishow.set(true);
-  }
-  hiddenComment(){
-    this.ishow.set(false);
-  }
+ 
 }

@@ -17,17 +17,16 @@
                 {{post.body}}
             </p>
             <img class="w-full rounded-xl" [src]="post.image" alt="post-img">
-            @if(!ishow()){
-                <p class="text-blue-400 mb-5 mt-2 cursor-pointer" (click)="showComment()">show comments</p>
-            }
-            @if(ishow()){
-                <p class="text-blue-400 mb-5 mt-2 cursor-pointer" (click)="hiddenComment()">show comments</p>
-            }
-            @if(ishow()){
-                <app-allcommentpost [Id]="post._id" ></app-allcommentpost>
-            }
+            <app-allcommentpost [Id]="post._id" ></app-allcommentpost>
+         
         </div>
     }
     
 
 </div>
+
+   <!--  @defer(on interaction(ele)){
+              
+                        <app-allcommentpost [Id]="post._id" ></app-allcommentpost>
+            }
+ -->

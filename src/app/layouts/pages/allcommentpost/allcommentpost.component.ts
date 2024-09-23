@@ -11,7 +11,8 @@ import { DatePipe } from '@angular/common';
   styleUrl: './allcommentpost.component.scss'
 })
 export class AllcommentpostComponent implements OnChanges {
-  Id:InputSignal<string> = input('')
+  Id:InputSignal<string> = input('');
+  ishow: WritableSignal<boolean> = signal(false);
   comments:WritableSignal<Comment[]> = signal([]);
   constructor(private _comments: CommentsService){
 
@@ -23,6 +24,12 @@ export class AllcommentpostComponent implements OnChanges {
         this.comments.set(res.comments)
       }
     })
+  }
+  showComment(){
+    this.ishow.set(true);
+  }
+  hiddenComment(){
+    this.ishow.set(false);
   }
   
 }
