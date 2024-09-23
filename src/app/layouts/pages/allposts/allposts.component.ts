@@ -5,11 +5,12 @@ import { PostsService } from '../../../core/services/posts/posts.service';
 import { Posts } from '../../../core/interfaces/posts';
 import { DatePipe } from '@angular/common';
 import { AllcommentpostComponent } from "../allcommentpost/allcommentpost.component";
+import { CreateCommentComponent } from "../create-comment/create-comment.component";
 
 @Component({
   selector: 'app-allposts',
   standalone: true,
-  imports: [NavbarComponent, DatePipe, AllcommentpostComponent],
+  imports: [NavbarComponent, DatePipe, AllcommentpostComponent, CreateCommentComponent],
   templateUrl: './allposts.component.html',
   styleUrl: './allposts.component.scss'
 })
