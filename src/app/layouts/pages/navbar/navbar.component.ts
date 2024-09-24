@@ -28,4 +28,6 @@ export class NavbarComponent {
   closeDash(){
     this.isDashed.set(false);
   }
+
+
 }

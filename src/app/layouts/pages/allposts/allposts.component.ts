@@ -6,20 +6,50 @@ import { Posts } from '../../../core/interfaces/posts';
 import { DatePipe } from '@angular/common';
 import { AllcommentpostComponent } from "../allcommentpost/allcommentpost.component";
 import { CreateCommentComponent } from "../create-comment/create-comment.component";
+import { FlowbiteService } from '../../../core/services/flowbite/flowbite.service';
+import {
+  initAccordions,
+  initCarousels,
+  initCollapses,
+  initDials,
+  initDismisses,
+  initDrawers,
+  initDropdowns,
+  initModals,
+  initPopovers,
+  initTabs,
+  initTooltips,
+} from 'flowbite';
+import { FormsModule } from '@angular/forms';
 
 @Component({
   selector: 'app-allposts',
   standalone: true,
-  imports: [NavbarComponent, DatePipe, AllcommentpostComponent, CreateCommentComponent],
+  imports: [NavbarComponent, DatePipe, AllcommentpostComponent, CreateCommentComponent, FormsModule],
   templateUrl: './allposts.component.html',
   styleUrl: './allposts.component.scss'
 })
 export class AllpostsComponent implements OnInit {
   allPosts: WritableSignal<Posts[]> = signal([]);
-  constructor(private _router:Router, private _posts: PostsService){
+  bodyPost:string = '';
+  selectedFile: File | null = null;
+  constructor(private _router:Router, private _posts: PostsService, private flowbite:FlowbiteService){
 
   }
   ngOnInit(): void {
+    initAccordions();
+    initCarousels();
+    initCollapses();
+    initDials();
+    initDismisses();
+    initDrawers();
+    initDropdowns();
+    initModals();
+    initPopovers();
+    initTabs();
+    initTooltips();
+    this.flowbite.loadFlowbite((flow)=>{
+    })
     window.localStorage.setItem('currentPage', this._router.url);
     this.getAllPosts()
   }
@@ -28,6 +58,26 @@ export class AllpostsComponent implements OnInit {
     this._posts.getAllPosts().subscribe({
       next: (res)=>{
         this.allPosts.set(res.posts)
+      }
+    })
+  }
+
+  catchImage(event: Event){
+    let file = event.target as HTMLInputElement
+    if(file.files && file.files.length > 0){
+      this.selectedFile = file.files[0];
+    }
+  }
+  sendPost(){
+    let formdata = new FormData();
+    if(this.selectedFile){
+      formdata.append('body', this.bodyPost);
+      formdata.append('image', this.selectedFile)
+    }
+    this._posts.createPosts(formdata).subscribe({
+      next:(res)=>{
+        console.log(res);
+        this.getAllPosts()
       }
     })
   }
