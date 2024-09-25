@@ -21,6 +21,7 @@ import {
   initTooltips,
 } from 'flowbite';
 import { FormsModule } from '@angular/forms';
+import { UserService } from '../../../core/services/users/user.service';
 
 @Component({
   selector: 'app-allposts',
@@ -33,7 +34,8 @@ export class AllpostsComponent implements OnInit {
   allPosts: WritableSignal<Posts[]> = signal([]);
   bodyPost:string = '';
   selectedFile: File | null = null;
-  constructor(private _router:Router, private _posts: PostsService, private flowbite:FlowbiteService){
+  user!:any;
+  constructor(private _router:Router, private _posts: PostsService, private flowbite:FlowbiteService, private _user: UserService){
 
   }
   ngOnInit(): void {
@@ -51,13 +53,25 @@ export class AllpostsComponent implements OnInit {
     this.flowbite.loadFlowbite((flow)=>{
     })
     window.localStorage.setItem('currentPage', this._router.url);
-    this.getAllPosts()
+    this.user = JSON.parse(window.localStorage.getItem('user')!);
+    this.getAllPosts();
+
   }
 
   getAllPosts(){
     this._posts.getAllPosts().subscribe({
       next: (res)=>{
-        this.allPosts.set(res.posts)
+        this.allPosts.set(res.posts);
+        this.getUserPost();
+      }
+    })
+  }
+
+  getUserPost(){
+    this._user.getUserPost(this.user._id).subscribe({
+      next:(res)=>{
+        this.allPosts.update((val)=> [...res.posts, ...val]);
+        console.log(this.allPosts())
       }
     })
   }

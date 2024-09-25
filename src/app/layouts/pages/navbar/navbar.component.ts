@@ -3,6 +3,8 @@ import { RouterLink } from '@angular/router';
 import { AuthService } from '../../../core/services/users/auth.service';
 import { Router } from '@angular/router';
 import { CommonModule } from '@angular/common';
+import { UserService } from '../../../core/services/users/user.service';
+import { User } from '../../../core/interfaces/user';
 
 @Component({
   selector: 'app-navbar',
@@ -13,12 +15,16 @@ import { CommonModule } from '@angular/common';
 })
 export class NavbarComponent {
   isDashed:WritableSignal<boolean> = signal(false);
-  constructor(private _auth: AuthService,private _router: Router){
+  user!: any; 
+  constructor(private _auth: AuthService,private _router: Router, private _user:UserService){
 
   }
-
+  ngOnInit() {
+  this.getLoggedUserData()
+  }
   signOut(){
     window.localStorage.removeItem('userToken');
+    window.localStorage.removeItem('user')
     this._router.navigate(['/login'])
     this._auth.userInfo.set(null);
   }
@@ -28,6 +34,34 @@ export class NavbarComponent {
   closeDash(){
     this.isDashed.set(false);
   }
+  getLoggedUserData(){
+    this._user.getLoggedUserData().subscribe({
+      next: (res)=>{
+        this.user = res.user;
+        window.localStorage.setItem('user', JSON.stringify(res.user))
+      }
+    })
+  }
+  formData: FormData = new FormData();
+  selectedImage: File | null = null;
+  catchImage(event:Event){
+    let inputFile = event.target as HTMLInputElement;
+    if(inputFile.files && inputFile.files.length > 0){
+      this.selectedImage = inputFile.files[0];
+    }
+  }
 
+  onSend(){
+    if(this.selectedImage){
+      this.formData.append('photo', this.selectedImage);
+    }
+    this._user.uploadProfilePhoto(this.formData).subscribe({
+      next:(res)=>{
+       this.getLoggedUserData();
+      }
+    
+    })
+  }
 
 }
+

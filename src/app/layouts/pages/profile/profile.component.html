@@ -1,0 +1,84 @@
+<app-navbar></app-navbar>
+  
+<div class="profile bg-main">
+        <div class="w-1/2 md:w-1/3 mx-auto bg-white rounded-lg p-5  mb-5">
+            <div class=" h-80 w-80 mx-auto" >
+                <img [src]="user?.photo" class="w-full h-full rounded-full border-blue-400 border-2"  alt="">
+            </div>
+            <h2 class="text-center capitalize text-3xl my-3">
+                {{user?.name}}
+            </h2>
+        </div>
+        <div class="w-1/2 md:w-1/3 mx-auto bg-white rounded-lg p-5  mb-5">
+            <h3 class="text-left capitalize text-3xl my-3  font-semibold">
+                user information:
+            </h3>
+            
+                <ul class="max-w-md divide-y divide-gray-200 dark:divide-gray-700">
+                    <li class="pb-3 sm:pb-4">
+                    <div class="flex items-center space-x-4 rtl:space-x-reverse">
+                        <div class="flex-shrink-0">
+                            <i class="fa-solid fa-envelope "></i>
+                    </div>
+                        <div class="flex-1 min-w-0">
+                            <p class="text-sm font-medium text-gray-900 truncate dark:text-white">
+                                {{user?.email}}
+                            </p>
+                        </div>
+                    </div>
+                </li>
+                <li class="pb-3 sm:pb-4">
+                    <div class="flex items-center space-x-4 rtl:space-x-reverse">
+                        <div class="flex-shrink-0">
+                            <i class="fa-solid fa-venus-mars"></i>
+                        </div>
+                        <div class="flex-1 min-w-0">
+                            <p class="text-sm font-medium text-gray-900 truncate dark:text-white">
+                                {{user?.gender}}
+                            </p>
+                        </div>
+                    </div>
+                </li>
+                <li class="pb-3 sm:pb-4">
+                    <div class="flex items-center space-x-4 rtl:space-x-reverse">
+                        <div class="flex-shrink-0">
+                            <i class="fa-solid fa-calendar-days"></i>
+                        </div>
+                        <div class="flex-1 min-w-0">
+                            <p class="text-sm font-medium text-gray-900 truncate dark:text-white">
+                                {{user?.dateOfBirth}}
+                            </p>
+                        </div>
+                    </div>
+                </li>
+                </ul>
+ 
+        </div>
+        @for(post of allPosts();track $index){
+            <div class="w-1/2 md:w-1/3 mx-auto bg-white rounded-lg p-5  mb-5">
+                <div class="flex items-center gap-3">
+                    <img class="w-11 h-11 rounded-full" [src]="post.user.photo" [alt]="post.user.name">
+                    <div>
+                        <h3 class="font-medium">
+                            {{post.user.name}}
+                        </h3>
+                        <span class="text-gray-500 my-1 font-light">
+                            {{post.createdAt | date:'short'}} 
+                        </span>
+                    </div>
+                </div>
+                <p class="my-4">
+                    {{post.body}}
+                </p>
+                <img class="w-full rounded-xl" [src]="post.image" alt="post-img">
+                <app-allcommentpost [Id]="post._id"  ></app-allcommentpost>
+               
+                <app-create-comment [Id]="post._id"></app-create-comment>
+             
+            </div>
+        }
+       
+        
+
+
+</div>
