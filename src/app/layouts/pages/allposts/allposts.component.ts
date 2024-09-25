@@ -1,4 +1,4 @@
-import { Component, OnInit, signal, WritableSignal } from '@angular/core';
+import { AfterViewInit, Component, OnInit, signal, WritableSignal } from '@angular/core';
 import { Router } from '@angular/router';
 import { NavbarComponent } from "../navbar/navbar.component";
 import { PostsService } from '../../../core/services/posts/posts.service';
@@ -31,7 +31,7 @@ import { map, mergeMap } from 'rxjs';
   templateUrl: './allposts.component.html',
   styleUrl: './allposts.component.scss'
 })
-export class AllpostsComponent implements OnInit {
+export class AllpostsComponent implements OnInit{
   allPosts: WritableSignal<Posts[]> = signal([]);
   bodyPost:string = '';
   selectedFile: File | null = null;
@@ -54,25 +54,17 @@ export class AllpostsComponent implements OnInit {
     })
     window.localStorage.setItem('currentPage', this._router.url);
     this.user = JSON.parse(window.localStorage.getItem('user')!);
-    this.getAllPosts();
-
+    if(this.user){
+      this.getAllPost();
+    }
   }
-
-
-  getAllPosts(){
-    this._posts.getAllPosts().pipe(
-      mergeMap((res)=>{
-        return this._user.getUserPost(this.user._id).pipe(
-          map((val)=>{
-            return [...val.posts, ...res.posts]
-          })
-        )
-      })
-    ).subscribe({
+  getAllPost(){
+    this._posts.getAllPostsM(this.user._id).subscribe({
       next:(res)=>{
-        this.allPosts.set(res)
-      }
+            this.allPosts.set(res)
+          }
     })
+    
   }
    
     
@@ -100,7 +92,7 @@ export class AllpostsComponent implements OnInit {
     this._posts.createPosts(formdata).subscribe({
       next:(res)=>{
         console.log(res);
-        this.getAllPosts()
+        this.getAllPost()
       }
     })
   }

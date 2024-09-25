@@ -1,6 +1,6 @@
 
 
-<nav class="bg-white border-gray-200 dark:bg-gray-900 fixed  w-full  ">
+<nav class="bg-white border-gray-200 dark:bg-gray-900 fixed z-40 w-full  ">
     <div class="max-w-screen-xl flex  items-center  mx-auto p-4 nav">
       
       <a   routerLink="/posts" class="flex items-center space-x-3  rtl:space-x-reverse">
@@ -19,7 +19,7 @@
     </div>
   </nav>
   <div [ngClass]="{'open':isDashed()}">
-    <div class="dashboard bg-white fixed top-0 right-0 min-h-screen p-4">
+    <div class="dashboard bg-white fixed z-50 top-0 right-0 min-h-screen p-4">
       <ul class="list-none pt-5 ">
         <li class="py-3 px-16 rounded-2xl cursor-pointer flex justify-between items-center">
           <a   routerLink="/profile" class="block cursor-pointer  text-white bg-blue-700 rounded md:bg-transparent md:text-blue-700 md:p-0 dark:text-white md:dark:text-blue-500" aria-current="page">
