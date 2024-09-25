@@ -22,6 +22,7 @@ import {
 } from 'flowbite';
 import { FormsModule } from '@angular/forms';
 import { UserService } from '../../../core/services/users/user.service';
+import { map, mergeMap } from 'rxjs';
 
 @Component({
   selector: 'app-allposts',
@@ -36,7 +37,6 @@ export class AllpostsComponent implements OnInit {
   selectedFile: File | null = null;
   user!:any;
   constructor(private _router:Router, private _posts: PostsService, private flowbite:FlowbiteService, private _user: UserService){
-
   }
   ngOnInit(): void {
     initAccordions();
@@ -58,23 +58,32 @@ export class AllpostsComponent implements OnInit {
 
   }
 
-  getAllPosts(){
-    this._posts.getAllPosts().subscribe({
-      next: (res)=>{
-        this.allPosts.set(res.posts);
-        this.getUserPost();
-      }
-    })
-  }
 
-  getUserPost(){
-    this._user.getUserPost(this.user._id).subscribe({
+  getAllPosts(){
+    this._posts.getAllPosts().pipe(
+      mergeMap((res)=>{
+        return this._user.getUserPost(this.user._id).pipe(
+          map((val)=>{
+            return [...val.posts, ...res.posts]
+          })
+        )
+      })
+    ).subscribe({
       next:(res)=>{
-        this.allPosts.update((val)=> [...res.posts, ...val]);
-        console.log(this.allPosts())
+        this.allPosts.set(res)
       }
     })
   }
+   
+    
+  
+  // getUserPost(){
+  //   this._user.getUserPost(this.user._id).subscribe({
+  //     next:(res)=>{
+  //       this.allPosts.update((val)=> [...res.posts, ...val]);
+  //     }
+  //   })
+  // }
 
   catchImage(event: Event){
     let file = event.target as HTMLInputElement
