@@ -92,7 +92,7 @@ export class ProfileComponent {
       next:(res)=>{
         if(res.message == "success"){
           this.getLoggedUserData();
-          this.getUserPost()
+          this.getUserPost();
         }
       }
     

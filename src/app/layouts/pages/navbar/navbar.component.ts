@@ -1,9 +1,10 @@
-import { Component, Input, input, InputSignal, signal, WritableSignal } from '@angular/core';
+import { Component, Input, input, InputSignal, Output, signal, WritableSignal } from '@angular/core';
 import { RouterLink } from '@angular/router';
 import { AuthService } from '../../../core/services/users/auth.service';
 import { Router } from '@angular/router';
 import { CommonModule } from '@angular/common';
 import { UserService } from '../../../core/services/users/user.service';
+import { EventEmitter } from '@angular/core';
 
 @Component({
   selector: 'app-navbar',
@@ -14,6 +15,7 @@ import { UserService } from '../../../core/services/users/user.service';
 })
 export class NavbarComponent {
   isDashed:WritableSignal<boolean> = signal(false);
+  @Output() emited = new EventEmitter<any>();
 
   @Input() user!:any;
   constructor(private _auth: AuthService,private _router: Router, private _user:UserService){
@@ -57,7 +59,10 @@ export class NavbarComponent {
     }
     this._user.uploadProfilePhoto(this.formData).subscribe({
       next:(res)=>{
-       this.getLoggedUserData();
+        if(res.message == "success"){
+          this.getLoggedUserData();
+          this.emited.emit()
+        }
       }
     
     })

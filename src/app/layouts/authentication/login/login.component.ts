@@ -27,16 +27,12 @@ export class LoginComponent {
     console.log(this.signinForm.value)
     this._auth.signin(this.signinForm.value).subscribe({
       next: (res)=>{
-        console.log(res)
         if(res.message == "success"){
           window.localStorage.setItem('userToken', res.token);
           this._auth.userInformation();
           this.getLoggedUserData();
           this._router.navigate(['/posts']);
         }
-      },
-      error:(err)=>{
-        console.log(err)
       }
     })
   }

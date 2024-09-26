@@ -96,5 +96,8 @@ export class AllpostsComponent implements OnInit{
       }
     })
   }
+  loading(event: Event){
+    this.getAllPost();
+  }
  
 }

@@ -1,6 +1,4 @@
-<app-navbar></app-navbar>
-
-
+<app-navbar (emited)="loading($event)" ></app-navbar>
   
 <div class="allposts bg-main">
     @defer (on timer(1000)) {
