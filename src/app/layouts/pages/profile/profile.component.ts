@@ -81,7 +81,10 @@ export class ProfileComponent {
       this.selectedImage = inputFile.files[0];
     }
   }
-
+  loading(){
+    this.getLoggedUserData();
+    this.getUserPost();
+  }
   sendPost(){
    
     if(this.selectedImage){
@@ -95,7 +98,6 @@ export class ProfileComponent {
           this.getUserPost();
         }
       }
-    
     })
   }
 }

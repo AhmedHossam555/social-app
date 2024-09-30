@@ -22,7 +22,6 @@ import {
 } from 'flowbite';
 import { FormsModule } from '@angular/forms';
 import { UserService } from '../../../core/services/users/user.service';
-import { map, mergeMap } from 'rxjs';
 
 @Component({
   selector: 'app-allposts',
@@ -36,6 +35,7 @@ export class AllpostsComponent implements OnInit{
   bodyPost:string = '';
   selectedFile: File | null = null;
   user!:any;
+
   constructor(private _router:Router, private _posts: PostsService, private flowbite:FlowbiteService, private _user: UserService){
   }
   ngOnInit(): void {
@@ -54,10 +54,9 @@ export class AllpostsComponent implements OnInit{
     })
     window.localStorage.setItem('currentPage', this._router.url);
     this.user = JSON.parse(window.localStorage.getItem('user')!);
-    if(this.user){
-      this.getAllPost();
-    }
+    this.getallPost();
   }
+  
   getAllPost(){
     this._posts.getAllPostsM(this.user._id).subscribe({
       next:(res)=>{
@@ -69,13 +68,14 @@ export class AllpostsComponent implements OnInit{
    
     
   
-  // getUserPost(){
-  //   this._user.getUserPost(this.user._id).subscribe({
-  //     next:(res)=>{
-  //       this.allPosts.update((val)=> [...res.posts, ...val]);
-  //     }
-  //   })
-  // }
+  getallPost(){
+    this._posts.getAllPosts().subscribe({
+      next:(res)=>{
+        this.allPosts.set(res.posts)
+      }
+    })
+
+  }
 
   catchImage(event: Event){
     let file = event.target as HTMLInputElement
