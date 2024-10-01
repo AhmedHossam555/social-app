@@ -1,10 +1,11 @@
-import { Component, Input, input, InputSignal, Output, signal, WritableSignal } from '@angular/core';
+import { Component, inject, Input, input, InputSignal, Output, signal, WritableSignal } from '@angular/core';
 import { RouterLink } from '@angular/router';
 import { AuthService } from '../../../core/services/users/auth.service';
 import { Router } from '@angular/router';
 import { CommonModule } from '@angular/common';
 import { UserService } from '../../../core/services/users/user.service';
 import { EventEmitter } from '@angular/core';
+import { DarkService } from '../../../core/services/dark.service';
 
 @Component({
   selector: 'app-navbar',
@@ -16,6 +17,7 @@ import { EventEmitter } from '@angular/core';
 export class NavbarComponent {
   isDashed:WritableSignal<boolean> = signal(false);
   @Output() emited = new EventEmitter<any>();
+  _dark:DarkService = inject(DarkService)
 
   @Input() user!:any;
   constructor(private _auth: AuthService,private _router: Router, private _user:UserService){
@@ -23,12 +25,12 @@ export class NavbarComponent {
   }
   ngOnInit() {
   this.getLoggedUserData();
-  
   }
   signOut(){
     window.localStorage.removeItem('userToken');
     this._router.navigate(['/login'])
     this._auth.userInfo.set(null);
+    window.localStorage.removeItem('user')
   }
   openDash(){
     this.isDashed.set(true);

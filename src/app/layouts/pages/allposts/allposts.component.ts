@@ -53,18 +53,18 @@ export class AllpostsComponent implements OnInit{
     this.flowbite.loadFlowbite((flow)=>{
     })
     window.localStorage.setItem('currentPage', this._router.url);
-    this.user = JSON.parse(window.localStorage.getItem('user')!);
+    //  this.user = JSON.parse(window.localStorage.getItem('user')!);
     this.getallPost();
   }
   
-  getAllPost(){
-    this._posts.getAllPostsM(this.user._id).subscribe({
-      next:(res)=>{
-            this.allPosts.set(res)
-          }
-    })
+  // getAllPost(){
+  //   this._posts.getAllPostsM(this.user._id).subscribe({
+  //     next:(res)=>{
+  //           this.allPosts.set(res)
+  //         }
+  //   })
     
-  }
+  // }
    
     
   
@@ -92,12 +92,12 @@ export class AllpostsComponent implements OnInit{
     this._posts.createPosts(formdata).subscribe({
       next:(res)=>{
         console.log(res);
-        this.getAllPost()
+        this.getallPost();
       }
     })
   }
   loading(event: Event){
-    this.getAllPost();
+    this.getallPost();
   }
  
 }

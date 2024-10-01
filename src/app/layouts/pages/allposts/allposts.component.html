@@ -1,9 +1,9 @@
 <app-navbar (emited)="loading($event)" ></app-navbar>
   
-<div class="allposts bg-main">
+<div class="allposts bg-main  dark:bg-slate-800" id="post">
       @defer (on timer(2000ms)) {
         
-        <div class="w-1/2 md:w-1/3 mx-auto bg-white rounded-lg p-5  mb-5">
+        <div class="w-1/2 md:w-1/3 mx-auto bg-white dark:bg-slate-700 rounded-lg p-5  mb-5">
             <!-- Modal toggle -->
        
               <input type="text" readonly data-modal-target="crud-modal" data-modal-toggle="crud-modal" id="create-post" rows="1" class="block mx-auto p-2.5 w-full text-sm text-gray-900 bg-white rounded-3xl border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-800 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="What's on your mind, Ahmed?">
@@ -58,13 +58,8 @@
             </div>
       }
 
-        
-
-    
-  
-
     @for(post of allPosts();track $index){
-        <div class="w-1/2 md:w-1/3 mx-auto bg-white rounded-lg p-5  mb-5">
+        <div class="w-1/2 md:w-1/3 mx-auto  bg-white dark:bg-slate-700 dark:text-white rounded-lg p-5  mb-5">
             <div class="flex items-center gap-3">
                 <img class="w-11 h-11 rounded-full" [src]="post.user.photo" [alt]="post.user.name">
                 <div>

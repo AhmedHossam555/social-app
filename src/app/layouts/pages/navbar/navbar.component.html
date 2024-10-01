@@ -1,31 +1,31 @@
 
 
-<nav class="bg-white border-gray-200 dark:bg-gray-900 fixed z-40 w-full  ">
+<nav class="bg-white border-gray-200 dark:bg-gray-900 dark:text-white fixed z-40 w-full  ">
     <div class="max-w-screen-xl flex  items-center  mx-auto p-4 nav">
       
-      <a   routerLink="/posts" class="flex items-center space-x-3  rtl:space-x-reverse">
+      <a routerLink="/posts" class="flex items-center space-x-3  rtl:space-x-reverse">
           <span class="self-center text-2xl text-main font-semibold whitespace-nowrap dark:text-white">Linked Posts</span>
       </a>
-        <ul class="font-medium flex items-center  p-0   border-gray-100   flex-row space-x-8 rtl:space-x-reverse mt-0 border-0 bg-white ">
+        <ul class="font-medium flex items-center  p-0   border-gray-100   flex-row space-x-8 rtl:space-x-reverse mt-0 border-0  ">
           <li>
             <a   routerLink="/profile" class="block cursor-pointer py-2 px-3  bg-blue-700 rounded bg-transparent text-blue-700 " >
                 <img class="w-10 h-10 rounded-full border-blue-400 border-2 imagenav" [src]="user?.photo" alt="" >
             </a>
           </li>
           <li class="p-0 md:p-2" (click)="openDash()">
-            <i  class="fa-solid fa-bars cursor-pointer  hover:text-blue-600 text-gray-900 text-2xl "></i>
+            <i  class="fa-solid fa-bars cursor-pointer  hover:text-blue-600 dark:text-blue-400 text-gray-900 text-2xl "></i>
           </li>
         </ul>
     </div>
   </nav>
   <div [ngClass]="{'open':isDashed()}">
-    <div class="dashboard bg-white fixed z-50 top-0 right-0 min-h-screen p-4">
+    <div class="dashboard bg-white dark:bg-gray-900  dark:text-blue-400 fixed z-50 top-0 right-0 min-h-screen p-4">
       <ul class="list-none pt-5 ">
         <li class="py-3 px-16 rounded-2xl cursor-pointer flex justify-between items-center">
           <a   routerLink="/profile" class="block cursor-pointer  text-white bg-blue-700 rounded md:bg-transparent md:text-blue-700 md:p-0 dark:text-white md:dark:text-blue-500" aria-current="page">
             <img class="w-10 h-10 rounded-full border-blue-400 border-2" [src]="user?.photo" alt="" >
         </a>
-        <i (click)="closeDash()" class="fa-solid fa-bars cursor-pointer  -mr-8 hover:text-blue-500 text-gray-900 text-2xl"></i>
+        <i (click)="closeDash()" class="fa-solid fa-bars cursor-pointer  -mr-8 hover:text-blue-500 text-gray-900 dark:text-blue-400 text-2xl"></i>
         </li>
         <li routerLink="/posts" class="py-3 px-16 rounded-2xl cursor-pointer  hover:bg-gray-100 flex justify-between gap-4 items-center">
           <i class="fa-solid fa-house "></i>
@@ -43,6 +43,15 @@
           <i class="fa-solid fa-arrow-right-from-bracket "></i>
           <span class="inline-block w-24">Sign Out</span>
         </li>
+        <li (click)="_dark.updateMode()"  class="py-3 px-16 rounded-2xl cursor-pointer hover:bg-gray-100 flex justify-between gap-4 items-center">
+          @if(_dark.darkmode()=== 'dark'){
+            <i  class="fa-solid fa-moon text-2xl"></i>
+          }@else{
+            <i  class="fa-solid fa-sun text-2xl"></i>
+          }
+
+        </li>
+     
       </ul>
   
   
