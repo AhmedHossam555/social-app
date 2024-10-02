@@ -39,19 +39,21 @@
           <i class="fa-solid fa-user-pen"></i>
           <span class="inline-block w-24" >Edit Photo</span>
         </li>
+       
+        <li (click)="_dark.updateMode()"  class="py-3 px-16 rounded-2xl cursor-pointer hover:bg-gray-100 flex justify-between gap-4 items-center">
+          @if(_dark.darkmode()=== 'dark'){
+            <i  class="fa-solid fa-moon text-2xl"></i>
+            <span class="inline-block w-24">Mode</span>
+          }@else{
+            <i  class="fa-solid fa-sun text-2xl"></i>
+            <span class="inline-block w-24">Mode</span>
+          }
+
+        </li>
         <li (click)="signOut()" class="py-3 px-16 rounded-2xl cursor-pointer hover:bg-gray-100 flex justify-between gap-4 items-center">
           <i class="fa-solid fa-arrow-right-from-bracket "></i>
           <span class="inline-block w-24">Sign Out</span>
         </li>
-        <li (click)="_dark.updateMode()"  class="py-3 px-16 rounded-2xl cursor-pointer hover:bg-gray-100 flex justify-between gap-4 items-center">
-          @if(_dark.darkmode()=== 'dark'){
-            <i  class="fa-solid fa-moon text-2xl"></i>
-          }@else{
-            <i  class="fa-solid fa-sun text-2xl"></i>
-          }
-
-        </li>
-     
       </ul>
   
   
