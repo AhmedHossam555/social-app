@@ -1,5 +1,5 @@
 import { HttpClient } from '@angular/common/http';
-import { Component } from '@angular/core';
+import { Component, signal, WritableSignal } from '@angular/core';
 import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { Router, RouterLink } from '@angular/router';
 import { AuthService } from '../../../core/services/users/auth.service';
@@ -13,7 +13,7 @@ import { UserService } from '../../../core/services/users/user.service';
   styleUrl: './login.component.scss'
 })
 export class LoginComponent {
-
+  isloading:WritableSignal<boolean> = signal(false);
   constructor(private _http: HttpClient,private _router: Router, private _auth: AuthService,private _user:UserService){
 
   }
@@ -24,10 +24,13 @@ export class LoginComponent {
   })
 
   onSubmit(){
+    this.isloading.set(true);
     console.log(this.signinForm.value)
     this._auth.signin(this.signinForm.value).subscribe({
       next: (res)=>{
+     
         if(res.message == "success"){
+          this.isloading.set(false);
           window.localStorage.setItem('userToken', res.token);
           this._auth.userInformation();
           this.getLoggedUserData();

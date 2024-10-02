@@ -15,7 +15,11 @@
                 <input type="password" formControlName="password" id="password" class="block w-full p-2 text-gray-900 border border-gray-300 rounded-lg bg-main text-sm focus:ring-blue-500 focus:border-blue-500" placeholder="Type your password">
             </div>
             <div>
-                <button type="submit" class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800">Signin</button>
+                <button type="submit" class="text-white flex gap-0.5 bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800">Signin
+                    @if (isloading()) {
+                        <span class="loader"></span>
+                    }
+                </button>
             </div>
             <p class="text-gray-500">Not registered?<span class="text-main font-medium cursor-pointer"  routerLink="/register">Create account</span></p>
         </form>
