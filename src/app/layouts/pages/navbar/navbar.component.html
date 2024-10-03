@@ -39,6 +39,10 @@
           <i class="fa-solid fa-user-pen"></i>
           <span class="inline-block w-24" >Edit Photo</span>
         </li>
+        <li  routerLink="/change" class="py-3 px-16 rounded-2xl cursor-pointer hover:bg-gray-100 flex justify-between gap-4 items-center">
+          <i class="fa-solid fa-lock"></i>
+          <span class="inline-block w-24" >Change Password</span>
+        </li>
        
         <li (click)="_dark.updateMode()"  class="py-3 px-16 rounded-2xl cursor-pointer hover:bg-gray-100 flex justify-between gap-4 items-center">
           @if(_dark.darkmode()=== 'dark'){

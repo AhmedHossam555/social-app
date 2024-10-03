@@ -1,8 +1,8 @@
-import { Component, inject, Input, input, InputSignal, Output, signal, WritableSignal } from '@angular/core';
+import { Component, inject, Input, input, InputSignal, Output, PLATFORM_ID, signal, WritableSignal } from '@angular/core';
 import { RouterLink } from '@angular/router';
 import { AuthService } from '../../../core/services/users/auth.service';
 import { Router } from '@angular/router';
-import { CommonModule } from '@angular/common';
+import { CommonModule, isPlatformBrowser } from '@angular/common';
 import { UserService } from '../../../core/services/users/user.service';
 import { EventEmitter } from '@angular/core';
 import { DarkService } from '../../../core/services/dark.service';
@@ -17,14 +17,16 @@ import { DarkService } from '../../../core/services/dark.service';
 export class NavbarComponent {
   isDashed:WritableSignal<boolean> = signal(false);
   @Output() emited = new EventEmitter<any>();
-  _dark:DarkService = inject(DarkService)
-
+  _dark:DarkService = inject(DarkService);
+  _plat = inject(PLATFORM_ID)
   @Input() user!:any;
   constructor(private _auth: AuthService,private _router: Router, private _user:UserService){
 
   }
   ngOnInit() {
-  this.getLoggedUserData();
+    if(isPlatformBrowser(this._plat)){
+      this.getLoggedUserData();
+    }
   }
   signOut(){
     window.localStorage.removeItem('userToken');

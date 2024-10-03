@@ -36,6 +36,9 @@ export class LoginComponent {
           this.getLoggedUserData();
           this._router.navigate(['/posts']);
         }
+      },
+      error:(err)=>{
+        this.isloading.set(false);
       }
     })
   }

@@ -8,4 +8,5 @@ export const routes: Routes = [
     {path:'profile',loadComponent:()=>import('./layouts/pages/profile/profile.component').then((c)=>c.ProfileComponent), canActivate:[authGuard],title:'profile'},
     {path:'login',loadComponent:()=>import('../app/layouts/authentication/login/login.component').then((c)=>c.LoginComponent),canActivate:[logoutGuard],title:"login"},
     {path:'register',loadComponent:()=>import('../app/layouts/authentication/register/register.component').then((c)=>c.RegisterComponent),canActivate:[logoutGuard],title:'register'},
+    {path:'change',loadComponent:()=>import('../app/layouts/authentication/change-password/change-password.component').then((c)=>c.ChangePasswordComponent),title:'changePassword'}
 ];
