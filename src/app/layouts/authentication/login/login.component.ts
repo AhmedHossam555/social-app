@@ -14,10 +14,10 @@ import { UserService } from '../../../core/services/users/user.service';
 })
 export class LoginComponent {
   isloading:WritableSignal<boolean> = signal(false);
+  errMsg!:string;
   constructor(private _http: HttpClient,private _router: Router, private _auth: AuthService,private _user:UserService){
 
   }
-
   signinForm: FormGroup = new FormGroup({
     email: new FormControl(null, [Validators.required, Validators.email]),
     password: new FormControl(null, [Validators.required,Validators.pattern(/^(?=.*[A-Za-z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/)]),
@@ -25,10 +25,8 @@ export class LoginComponent {
 
   onSubmit(){
     this.isloading.set(true);
-    console.log(this.signinForm.value)
     this._auth.signin(this.signinForm.value).subscribe({
       next: (res)=>{
-     
         if(res.message == "success"){
           this.isloading.set(false);
           window.localStorage.setItem('userToken', res.token);
@@ -38,6 +36,7 @@ export class LoginComponent {
         }
       },
       error:(err)=>{
+        this.errMsg = err.error.error
         this.isloading.set(false);
       }
     })

@@ -12,6 +12,7 @@ import { Router } from '@angular/router';
   styleUrl: './register.component.scss'
 })
 export class RegisterComponent implements OnInit {
+  errMsg!:string;
   
   constructor(private flowbiteService: FlowbiteService, private _auth: AuthService,private _router: Router){
 
@@ -24,13 +25,13 @@ export class RegisterComponent implements OnInit {
   signUpForm: FormGroup = new FormGroup({
     name: new FormControl(null, Validators.required),
     email: new FormControl(null, [Validators.required, Validators.email]),
-    password: new FormControl(null,[Validators.required]),
-    rePassword: new FormControl(null, [Validators.required]),
+    password: new FormControl(null,[Validators.required,Validators.pattern(/^(?=.*[A-Za-z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/)]),
+    rePassword: new FormControl(null, [Validators.required,Validators.pattern(/^(?=.*[A-Za-z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/)]),
     dateOfBirth: new FormControl(null, Validators.required),
-    gender: new FormControl(null),
+    gender: new FormControl(null,Validators.required),
   })
   onSubmit(){
-    console.log(this.signUpForm.value)
+
     this._auth.signUp(this.signUpForm.value).subscribe({
       next: (res)=>{
         if(res.message == 'success'){
@@ -38,7 +39,7 @@ export class RegisterComponent implements OnInit {
         }
       },
       error:(err)=>{
-        console.log(err)
+        this.errMsg = err.error.error;
       }
     })
   }
