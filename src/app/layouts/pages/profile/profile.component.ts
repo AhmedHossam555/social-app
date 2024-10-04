@@ -30,6 +30,7 @@ import { FormsModule } from '@angular/forms';
   styleUrl: './profile.component.scss'
 })
 export class ProfileComponent {
+  isOpen:boolean = false
   user!:any;
   id!:string;
   allPosts: WritableSignal<Posts[]> = signal([]);
@@ -51,7 +52,11 @@ export class ProfileComponent {
     initTabs();
     initTooltips();
   }
-
+  updateOpen(event:Event){
+    const eventEle = event.target as HTMLElement;
+    const par = eventEle.parentNode as HTMLElement;
+    par.classList.toggle('open')
+  }
   getAllUser(){
     this.id = JSON.parse(window.localStorage.getItem('user')!)._id
     }
