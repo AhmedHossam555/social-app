@@ -37,6 +37,7 @@ export class AllpostsComponent implements OnInit{
   user!:any;
 
   constructor(private _router:Router, private _posts: PostsService, private flowbite:FlowbiteService, private _user: UserService){
+    console.log('https://linked-posts.routemisr.com/users/profile-data'.indexOf('profile-data'))
   }
   ngOnInit(): void {
     initAccordions();

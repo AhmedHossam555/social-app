@@ -4,9 +4,13 @@ import { NgxSpinnerService } from 'ngx-spinner';
 import { finalize } from 'rxjs';
 
 export const loadingInterceptor: HttpInterceptorFn = (req, next) => {
-  let _spinner = inject( NgxSpinnerService);
-  _spinner.show()
+  const _spinner = inject( NgxSpinnerService);
+  if(!req.url.includes('profile-data')){
+    _spinner.show()
+  }
   return next(req).pipe(finalize(()=>{
-    _spinner.hide()
+    if(!req.url.includes('profile-data')){
+      _spinner.hide()
+    }
   }));
 };
