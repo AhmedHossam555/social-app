@@ -33,4 +33,8 @@ export class PostsService {
       })
     )
   }
+
+  deletePost(id:string):Observable<any>{
+    return this._http.delete(`${Enviroment.baseUrl}/posts/${id}`);
+  }
 }
