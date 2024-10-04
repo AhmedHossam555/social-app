@@ -1,11 +1,8 @@
-<app-navbar (emited)="loading($event)" ></app-navbar>
+<app-navbar (emited)="loading()"></app-navbar>
   
 <div class="allposts bg-main  dark:bg-slate-800" id="post">
-      @defer (on timer(2000ms)) {
-        
         <div class="w-1/2 md:w-1/3 mx-auto bg-white dark:bg-slate-700 rounded-lg p-5  mb-5">
             <!-- Modal toggle -->
-       
               <input type="text" readonly data-modal-target="crud-modal" data-modal-toggle="crud-modal" id="create-post" rows="1" class="block mx-auto p-2.5 w-full text-sm text-gray-900 bg-white rounded-3xl border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-800 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="What's on your mind, Ahmed?">
               <!-- Main modal -->
               <div id="crud-modal" tabindex="-1" aria-hidden="true" class="hidden overflow-y-auto overflow-x-hidden fixed top-0 right-0 left-0 z-50 justify-center items-center w-full md:inset-0 h-[calc(100%-1rem)] max-h-full">
@@ -25,16 +22,13 @@
                               </button>
                           </div>
                           <!-- Modal body -->
-                  
                             <div class="p-4 md:p-5">
                                 <div class="grid gap-4 mb-4 grid-cols-2">
                                     <div class="col-span-2">
                                         <label for="description" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">What is in your mind</label>
                                         <textarea [(ngModel)]="bodyPost" id="description" rows="4" class="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Write is in your mind"></textarea>                    
                                     </div>
-                                    {{bodyPost}}
                                 </div>
-                                       
                         <div class="flex items-center justify-center w-full my-3">
                             <label for="dropzone-file" class="flex flex-col items-center justify-center w-full h-64 border-2 border-gray-300 border-dashed rounded-lg cursor-pointer bg-gray-50  dark:bg-gray-700 hover:bg-gray-100 dark:border-gray-600 dark:hover:border-gray-500 dark:hover:bg-gray-600">
                                 <div class="flex flex-col items-center justify-center pt-5 pb-6">
@@ -56,8 +50,6 @@
                   </div>
               </div> 
             </div>
-      }
-
     @for(post of allPosts();track $index){
         <div class="w-1/2 md:w-1/3 mx-auto  bg-white dark:bg-slate-700 dark:text-white rounded-lg p-5  mb-5">
             <div class="flex items-center gap-3">
@@ -75,16 +67,10 @@
                 {{post.body}}
             </p>
             <img class="w-full rounded-xl" [src]="post.image" alt="post-img">
-            <app-allcommentpost [Id]="post._id"  ></app-allcommentpost>
-           
+            <app-allcommentpost [Id]="post._id"></app-allcommentpost>
             <app-create-comment [Id]="post._id"></app-create-comment>
-         
         </div>
-
     }
-    
-    
-
 </div>
 
  

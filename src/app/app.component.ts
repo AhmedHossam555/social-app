@@ -5,7 +5,6 @@ import { RegisterComponent } from "./layouts/authentication/register/register.co
 import { NgxSpinnerModule } from 'ngx-spinner';
 import { DarkService } from './core/services/dark.service';
 import {  NgClass } from '@angular/common';
-
 @Component({
   selector: 'app-root',
   standalone: true,
@@ -20,7 +19,6 @@ export class AppComponent implements OnInit{
   ngOnInit(): void {
     this.flowbiteService.loadFlowbite(flowbite => {
     });
-   
   }
 
   

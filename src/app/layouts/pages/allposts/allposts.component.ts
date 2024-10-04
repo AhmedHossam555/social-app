@@ -50,13 +50,12 @@ export class AllpostsComponent implements OnInit{
     initPopovers();
     initTabs();
     initTooltips();
-    this.flowbite.loadFlowbite((flow)=>{
-    })
+    // this.flowbite.loadFlowbite((flow)=>{
+    // })
     window.localStorage.setItem('currentPage', this._router.url);
     //  this.user = JSON.parse(window.localStorage.getItem('user')!);
     this.getallPost();
   }
-  
   // getAllPost(){
   //   this._posts.getAllPostsM(this.user._id).subscribe({
   //     next:(res)=>{
@@ -65,16 +64,12 @@ export class AllpostsComponent implements OnInit{
   //   })
     
   // }
-   
-    
-  
   getallPost(){
     this._posts.getAllPosts().subscribe({
       next:(res)=>{
-        this.allPosts.set(res.posts)
+        this.allPosts.update((val)=> val = res.posts)
       }
     })
-
   }
 
   catchImage(event: Event){
@@ -91,12 +86,11 @@ export class AllpostsComponent implements OnInit{
     }
     this._posts.createPosts(formdata).subscribe({
       next:(res)=>{
-        console.log(res);
         this.getallPost();
       }
     })
   }
-  loading(event: Event){
+  loading(){
     this.getallPost();
   }
  
