@@ -1,3 +1,4 @@
+import { PostsService } from './../../../core/services/posts/posts.service';
 import { DatePipe } from '@angular/common';
 import { Component, signal, WritableSignal } from '@angular/core';
 import { NavbarComponent } from "../navbar/navbar.component";
@@ -20,6 +21,7 @@ import {
   initTooltips,
 } from 'flowbite';
 import { FormsModule } from '@angular/forms';
+import Swal from 'sweetalert2';
 
 
 @Component({
@@ -34,7 +36,7 @@ export class ProfileComponent {
   user!:any;
   id!:string;
   allPosts: WritableSignal<Posts[]> = signal([]);
-  constructor(private _user: UserService){
+  constructor(private _user: UserService, private _post:PostsService){
     this.getAllUser();
     this.getUserPost();
     this.getLoggedUserData();
@@ -101,6 +103,23 @@ export class ProfileComponent {
         if(res.message == "success"){
           this.getLoggedUserData();
           this.getUserPost();
+        }
+      }
+    })
+  }
+
+  deletePost(id:string){
+    this._post.deletePost(id).subscribe({
+      next: (res)=>{
+        if(res.message == 'success'){
+          Swal.fire({
+            position: "top-end",
+            icon: "success",
+            title: "Your success delete post",
+            showConfirmButton: false,
+            timer: 1500
+          });
+          this.allPosts.update((val)=>val = res.posts)
         }
       }
     })
