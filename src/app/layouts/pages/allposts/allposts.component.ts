@@ -1,5 +1,5 @@
-import { AfterViewInit, Component, OnInit, signal, WritableSignal } from '@angular/core';
-import { Router } from '@angular/router';
+import {  Component, OnInit, signal, WritableSignal } from '@angular/core';
+import {  Router } from '@angular/router';
 import { NavbarComponent } from "../navbar/navbar.component";
 import { PostsService } from '../../../core/services/posts/posts.service';
 import { Posts } from '../../../core/interfaces/posts';
@@ -94,5 +94,15 @@ export class AllpostsComponent implements OnInit{
   loading(){
     this.getallPost();
   }
+  addopen(event:Event){
+    const ele = event.target as HTMLElement;
+    const par = ele.parentNode as HTMLElement;
+    par.classList.add('open')
+  }
+  deleteopen(event:Event){
+    const ele = document.getElementById("comment") as HTMLElement;
+    ele.classList.remove('open');
+  }
+
  
 }
