@@ -22,6 +22,7 @@ import {
 } from 'flowbite';
 import { FormsModule } from '@angular/forms';
 import Swal from 'sweetalert2';
+import { FlowbiteService } from '../../../core/services/flowbite/flowbite.service';
 
 
 @Component({
@@ -36,7 +37,7 @@ export class ProfileComponent {
   user!:any;
   id!:string;
   allPosts: WritableSignal<Posts[]> = signal([]);
-  constructor(private _user: UserService, private _post:PostsService){
+  constructor(private _user: UserService, private _post:PostsService,private _flow:FlowbiteService){
     this.getAllUser();
     this.getUserPost();
     this.getLoggedUserData();
@@ -53,6 +54,8 @@ export class ProfileComponent {
     initPopovers();
     initTabs();
     initTooltips();
+    this._flow.loadFlowbite((flow)=>{})
+  
   }
   updateOpen(event:Event){
     const eventEle = event.target as HTMLElement;

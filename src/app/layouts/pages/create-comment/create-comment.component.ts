@@ -1,6 +1,7 @@
-import { Component, input, InputSignal, OnChanges, SimpleChanges } from '@angular/core';
+import { Component, input, InputSignal, OnChanges, OnInit, SimpleChanges } from '@angular/core';
 import { FormControl, FormGroup, ReactiveFormsModule } from '@angular/forms';
 import { CommentsService } from '../../../core/services/comments/comments.service';
+import { FlowbiteService } from '../../../core/services/flowbite/flowbite.service';
 
 @Component({
   selector: 'app-create-comment',
@@ -9,12 +10,15 @@ import { CommentsService } from '../../../core/services/comments/comments.servic
   templateUrl: './create-comment.component.html',
   styleUrl: './create-comment.component.scss'
 })
-export class CreateCommentComponent implements OnChanges {
+export class CreateCommentComponent implements OnChanges,OnInit {
   Id:InputSignal<string> = input('')
 
   formComment!:FormGroup;
-  constructor(private _comment: CommentsService){
+  constructor(private _comment: CommentsService,private _flow:FlowbiteService){
 
+  }
+  ngOnInit() {
+    this._flow.loadFlowbite((flow)=>{})
   }
   ngOnChanges(changes: SimpleChanges): void {
     this.formComment = new FormGroup({

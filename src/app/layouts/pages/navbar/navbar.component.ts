@@ -6,6 +6,7 @@ import { CommonModule, isPlatformBrowser } from '@angular/common';
 import { UserService } from '../../../core/services/users/user.service';
 import { EventEmitter } from '@angular/core';
 import { DarkService } from '../../../core/services/dark.service';
+import { FlowbiteService } from '../../../core/services/flowbite/flowbite.service';
 
 @Component({
   selector: 'app-navbar',
@@ -20,13 +21,15 @@ export class NavbarComponent {
   _dark:DarkService = inject(DarkService);
   _plat = inject(PLATFORM_ID)
   @Input() user!:any;
-  constructor(private _auth: AuthService,private _router: Router, private _user:UserService){
+  constructor(private _auth: AuthService,private _router: Router, private _user:UserService,private _flow:FlowbiteService){
 
   }
   ngOnInit() {
     if(isPlatformBrowser(this._plat)){
       this.getLoggedUserData();
     }
+    this._flow.loadFlowbite((flow)=>{})
+
   }
   signOut(){
     window.localStorage.removeItem('userToken');

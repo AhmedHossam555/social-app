@@ -2,6 +2,7 @@ import { Component, computed, effect, input, Input, InputSignal, OnChanges, OnIn
 import { CommentsService } from '../../../core/services/comments/comments.service';
 import { Comment } from '../../../core/interfaces/posts';
 import { DatePipe } from '@angular/common';
+import { FlowbiteService } from '../../../core/services/flowbite/flowbite.service';
 
 @Component({
   selector: 'app-allcommentpost',
@@ -10,13 +11,16 @@ import { DatePipe } from '@angular/common';
   templateUrl: './allcommentpost.component.html',
   styleUrl: './allcommentpost.component.scss'
 })
-export class AllcommentpostComponent implements OnChanges {
+export class AllcommentpostComponent implements OnChanges, OnInit {
   Id:InputSignal<string> = input('');
   ishow: WritableSignal<boolean> = signal(false);
    comments:WritableSignal<Comment[]> = signal([]);
 
-  constructor(private _comments: CommentsService){
+  constructor(private _comments: CommentsService,private _flow:FlowbiteService){
  
+  }
+  ngOnInit(): void {
+    this._flow.loadFlowbite((flow)=>{})
   }
  
   ngOnChanges(){
