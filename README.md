@@ -1,7 +1,7 @@
-# Overview
+## Overview
 Social App is a platform designed to connect users through shared interests and activities.Users can create profiles, share posts, connect with friends posts, and engage in community discussions. The application fetches  data through an API and uses a token-based authentication system.
 
-# Feature
+## Feature
  * User Authentication: Secure sign-up, login, and logout functionality using Guard and JWT token.
  * Profile Customization: Users can update their profiles with personal details, profile pictures, and cover images.
  * Post Creation & Sharing: Create posts with text, images, or links. Users can edit or delete their posts.
@@ -11,16 +11,16 @@ Social App is a platform designed to connect users through shared interests and 
  * Spinner with ngx-spinner
  * Tailwind CSS Angular - Flowbite
 
-# Backend Api
+## Backend Api
 Documentation for the backend API can be found [here](https://documenter.getpostman.com/view/5709532/2sA3JT4Jzs)
 
-# Tech Stack
+## Tech Stack
 * Angular (version 17.3.6)
 * TypeScript for logic
 * SCSS for styling
 * HTML5 for structure
 
-# SocialApp
+## SocialApp
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 17.3.6.
 
