@@ -1,6 +1,5 @@
 # Overview
-    Social App is a platform designed to connect users through shared interests and activities.
-     Users can create profiles, share posts, connect with friends posts, and engage in community discussions. The application fetches  data through an API and uses a token-based authentication system.
+Social App is a platform designed to connect users through shared interests and activities.Users can create profiles, share posts, connect with friends posts, and engage in community discussions. The application fetches  data through an API and uses a token-based authentication system.
 
 # Feature
  * User Authentication: Secure sign-up, login, and logout functionality using Guard and JWT token.
@@ -13,7 +12,7 @@
  * Tailwind CSS Angular - Flowbite
 
 # Backend Api
-Documentation for the backend API can be found [here](https://documenter.getpostman.com/view 5709532/2sA3JT4Jzs)
+Documentation for the backend API can be found [here](https://documenter.getpostman.com/view/5709532/2sA3JT4Jzs)
 
 # Tech Stack
 * Angular (version 17.3.6)
