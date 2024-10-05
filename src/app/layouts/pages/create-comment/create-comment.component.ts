@@ -2,7 +2,19 @@ import { Component, input, InputSignal, OnChanges, OnInit, SimpleChanges } from 
 import { FormControl, FormGroup, ReactiveFormsModule } from '@angular/forms';
 import { CommentsService } from '../../../core/services/comments/comments.service';
 import { FlowbiteService } from '../../../core/services/flowbite/flowbite.service';
-
+import {
+  initAccordions,
+  initCarousels,
+  initCollapses,
+  initDials,
+  initDismisses,
+  initDrawers,
+  initDropdowns,
+  initModals,
+  initPopovers,
+  initTabs,
+  initTooltips,
+} from 'flowbite';
 @Component({
   selector: 'app-create-comment',
   standalone: true,
@@ -18,6 +30,17 @@ export class CreateCommentComponent implements OnChanges,OnInit {
 
   }
   ngOnInit() {
+    initAccordions();
+    initCarousels();
+    initCollapses();
+    initDials();
+    initDismisses();
+    initDrawers();
+    initDropdowns();
+    initModals();
+    initPopovers();
+    initTabs();
+    initTooltips();
     this._flow.loadFlowbite((flow)=>{})
   }
   ngOnChanges(changes: SimpleChanges): void {
